@@ -17,7 +17,7 @@ public class ArrayUtils {
     /**
      * Generates an array with random values from 0 to size.
      *
-     * * @param size The number of elements in the array.
+     * @param size The number of elements in the array.
      * @return A random integer array.
      */
     public int[] generateRandomArray(int size) {
