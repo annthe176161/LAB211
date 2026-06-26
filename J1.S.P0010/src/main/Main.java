@@ -4,10 +4,12 @@
  */
 package main;
 
-import helper.ArrayHelper;
-import java.util.List;
-import logic.LinearSearch;
-import util.InputUtils;
+import array.ArrayHandler;
+import constant.ConfigConstants;
+import constant.MessageConstants;
+import java.util.Arrays;
+import service.SearchService;
+import ui.InputValidator;
 
 /**
  *
@@ -16,37 +18,37 @@ import util.InputUtils;
 public class Main {
 
     public static void main(String[] args) {
-        // 1. Get array size from user
-        int size = InputUtils.getInt(
-                "Enter number of array: ",
-                1,
-                Integer.MAX_VALUE,
-                "Error: Out of range!",
-                "Error: Invalid format!"
+        ArrayHandler arrayHandler = new ArrayHandler();
+        SearchService searchService = new SearchService();
+
+        int arraySize = InputValidator.getInteger(
+                MessageConstants.PROMPT_ARRAY_SIZE,
+                ConfigConstants.RANGE_MIN,
+                ConfigConstants.RANGE_MAX,
+                MessageConstants.ERROR_SIZE_OUT_OF_BOUNDS,
+                MessageConstants.ERROR_INVALID_FORMAT
         );
 
-        // 2. Get value to search from user
-        int searchValue = InputUtils.getInt(
-                "Enter search value: ",
-                Integer.MIN_VALUE,
-                Integer.MAX_VALUE,
-                "Error: Out of range!",
-                "Error: Invalid format!"
+        int searchValue = InputValidator.getInteger(
+                MessageConstants.PROMPT_SEARCH_VALUE,
+                ConfigConstants.RANGE_MIN,
+                ConfigConstants.RANGE_MAX,
+                MessageConstants.ERROR_VALUE_OUT_OF_BOUNDS,
+                MessageConstants.ERROR_INVALID_FORMAT
         );
 
-        // 3. Generate and display random array (Using the new helper package)
-        int[] randomArray = ArrayHelper.generateRandomArray(size);
-        ArrayHelper.displayArray(randomArray);
+        int[] randomArray = arrayHandler.generateRandomArray(arraySize);
 
-        // 4. Perform search and gather all found indices
-        LinearSearch searcher = new LinearSearch();
-        List<Integer> foundIndices = searcher.findAllValueIndices(randomArray, searchValue);
+        System.out.println(MessageConstants.DISPLAY_ARRAY_PREFIX + Arrays.toString(randomArray));
 
-        // 5. Display the result
-        if (!foundIndices.isEmpty()) {
-            System.out.println("Found " + searchValue + " at indices: " + foundIndices.toString());
+        int[] foundIndices = searchService.findAllValuePositions(randomArray, searchValue);
+
+        if (foundIndices.length > 0) {
+            System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
+                    + MessageConstants.DISPLAY_FOUND_SUFFIX + Arrays.toString(foundIndices));
         } else {
-            System.out.println("Value " + searchValue + " does not exist in the array.");
+            System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
+                    + MessageConstants.DISPLAY_NOT_FOUND_SUFFIX);
         }
     }
 }
