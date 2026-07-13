@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import array.ArrayHandler;
@@ -9,14 +5,20 @@ import constant.ConfigConstants;
 import constant.MessageConstants;
 import java.util.Arrays;
 import service.SearchService;
-import ui.InputValidator;
+import util.InputValidator;
 
 /**
- *
+ * Main execution class for the Linear Search program.
+ * 
  * @author admin
  */
 public class Main {
 
+    /**
+     * Main method that drives the program.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         ArrayHandler arrayHandler = new ArrayHandler();
         SearchService searchService = new SearchService();
@@ -44,8 +46,20 @@ public class Main {
         int[] foundIndices = searchService.findAllValuePositions(randomArray, searchValue);
 
         if (foundIndices.length > 0) {
-            System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
-                    + MessageConstants.DISPLAY_FOUND_SUFFIX + Arrays.toString(foundIndices));
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < foundIndices.length; i++) {
+                sb.append(foundIndices[i]);
+                if (i < foundIndices.length - 1) {
+                    sb.append(", ");
+                }
+            }
+            if (foundIndices.length == 1) {
+                System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
+                        + MessageConstants.DISPLAY_FOUND_INDEX + sb.toString());
+            } else {
+                System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
+                        + MessageConstants.DISPLAY_FOUND_INDICES + sb.toString());
+            }
         } else {
             System.out.println(MessageConstants.DISPLAY_FOUND_PREFIX + searchValue
                     + MessageConstants.DISPLAY_NOT_FOUND_SUFFIX);

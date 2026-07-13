@@ -1,31 +1,31 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package ui;
+package util;
 
 import java.util.Scanner;
 
 /**
- *
+ * Utility class for validating user input.
+ * 
  * @author admin
  */
 public class InputValidator {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    /**
+     * Private constructor to prevent instantiation.
+     */
     private InputValidator() {
-        throw new AssertionError("Utility class should not be instantiated.");
+        throw new AssertionError();
     }
 
     /**
-     * Reads and validates an integer from the console within a range.
+     * Prompts the user and returns a validated integer within a range.
      *
-     * @param message the prompt message for input
+     * @param message the prompt message
      * @param min the minimum allowed value
      * @param max the maximum allowed value
      * @param errorRange the error message for out-of-range input
-     * @param errorFormat the error message for non-numeric input
+     * @param errorFormat the error message for invalid format
      * @return a valid integer between min and max
      */
     public static int getInteger(String message, int min, int max,
@@ -35,8 +35,7 @@ public class InputValidator {
                 System.out.println(message);
                 String input = SCANNER.nextLine().trim();
 
-                double number = Double.parseDouble(input);
-                int result = (int) number;
+                int result = Integer.parseInt(input);
 
                 if (result >= min && result <= max) {
                     return result;

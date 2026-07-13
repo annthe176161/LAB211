@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package array;
 
 import java.util.Random;
 
 /**
- *
+ * Class for handling array generation.
+ * 
  * @author admin
  */
 public class ArrayHandler {
@@ -15,10 +12,10 @@ public class ArrayHandler {
     private static final Random RANDOM = new Random();
 
     /**
-     * Generates an int array with random numbers.
+     * Generates an array with random integers.
      *
-     * @param size the number of elements to generate
-     * @return an array filled with random integers
+     * @param size the number of elements in the array
+     * @return an array of random integers
      */
     public int[] generateRandomArray(int size) {
         int[] array = new int[size];

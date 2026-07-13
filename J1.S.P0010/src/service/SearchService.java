@@ -1,21 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
 /**
- *
+ * Service class for searching operations on arrays.
+ * 
  * @author admin
  */
 public class SearchService {
 
     /**
-     * Finds all index positions of a specific value in an array.
+     * Finds all index positions of a search value in an array.
      *
-     * @param array the target array to search
-     * @param searchValue the number to look for
-     * @return an array of all found indices, or an empty array if not found
+     * @param array the array to search
+     * @param searchValue the value to search for
+     * @return an array of indices where the search value is found
      */
     public int[] findAllValuePositions(int[] array, int searchValue) {
         if (array == null || array.length == 0) {
