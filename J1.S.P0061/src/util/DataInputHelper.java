@@ -1,32 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package util;
 
 import java.util.Scanner;
 
 /**
- *
- * @author admin
+ * Provides methods for reading and validating user input.
  */
 public class DataInputHelper {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
-     * Prompts for and returns a valid positive double value.
-     *
-     * @param prompt prompt message
-     * @param errFormat format error message
-     * @param errNegative range error message
-     * @return a positive double
+     * Prevents creating an instance of this utility class.
      */
-    public static double inputPositiveDouble(String prompt, String errFormat, String errNegative) {
+    private DataInputHelper() {
+    }
+
+    /**
+     * Reads a positive decimal number from the user.
+     *
+     * @param prompt message displayed before input
+     * @param errFormat message displayed for invalid numeric input
+     * @param errNegative message displayed for a non-positive number
+     * @return a valid positive decimal number
+     */
+    public static double inputPositiveDouble(
+            String prompt, String errFormat, String errNegative) {
         while (true) {
             try {
                 System.out.print(prompt);
-                final double result = Double.parseDouble(SCANNER.nextLine().trim());
+                double result = Double.parseDouble(SCANNER.nextLine().trim());
                 if (result > 0) {
                     return result;
                 }

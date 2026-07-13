@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entity;
 
 /**
- *
- * @author admin
+ * Represents a triangle with three side lengths.
  */
 public class Triangle extends Shape {
 
@@ -14,35 +9,75 @@ public class Triangle extends Shape {
     private double sideB;
     private double sideC;
 
+    /**
+     * Creates a triangle with default side lengths.
+     */
     public Triangle() {
     }
 
+    /**
+     * Creates a triangle with the specified side lengths.
+     *
+     * @param sideA first side length
+     * @param sideB second side length
+     * @param sideC third side length
+     */
     public Triangle(double sideA, double sideB, double sideC) {
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
     }
 
+    /**
+     * Gets the first side length.
+     *
+     * @return first side length
+     */
     public double getSideA() {
         return sideA;
     }
 
+    /**
+     * Sets the first side length.
+     *
+     * @param sideA new first side length
+     */
     public void setSideA(double sideA) {
         this.sideA = sideA;
     }
 
+    /**
+     * Gets the second side length.
+     *
+     * @return second side length
+     */
     public double getSideB() {
         return sideB;
     }
 
+    /**
+     * Sets the second side length.
+     *
+     * @param sideB new second side length
+     */
     public void setSideB(double sideB) {
         this.sideB = sideB;
     }
 
+    /**
+     * Gets the third side length.
+     *
+     * @return third side length
+     */
     public double getSideC() {
         return sideC;
     }
 
+    /**
+     * Sets the third side length.
+     *
+     * @param sideC new third side length
+     */
     public void setSideC(double sideC) {
         this.sideC = sideC;
     }
@@ -59,17 +94,31 @@ public class Triangle extends Shape {
         return (a + b > c) && (a + c > b) && (b + c > a);
     }
 
+    /**
+     * Calculates the area of the triangle.
+     *
+     * @return area of the triangle
+     */
     @Override
     public double getArea() {
-        final double s = getPerimeter() / 2;
-        return Math.sqrt(s * (s - this.sideA) * (s - this.sideB) * (s - this.sideC));
+        double s = getPerimeter() / 2;
+        return Math.sqrt(s * (s - this.sideA) * (s - this.sideB)
+                * (s - this.sideC));
     }
 
+    /**
+     * Calculates the perimeter of the triangle.
+     *
+     * @return perimeter of the triangle
+     */
     @Override
     public double getPerimeter() {
         return this.sideA + this.sideB + this.sideC;
     }
 
+    /**
+     * Prints the triangle information.
+     */
     @Override
     public void printResult() {
         System.out.println("-----Triangle-----");
