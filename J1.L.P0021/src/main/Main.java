@@ -1,69 +1,57 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
+import constant.AppConfigs;
 import controller.StudentManager;
-import enums.MenuOption;
-import util.Validation;
+import utility.Validation;
 
 /**
- *
- * @author admin
+ * Entry point of the Student Management application.
  */
 public class Main {
 
+    /**
+     * Main method that runs the program loop.
+     *
+     * @param args command line arguments (not used)
+     */
     public static void main(String[] args) {
         StudentManager manager = new StudentManager();
+        boolean running = true;
 
-        int minMenuValue = MenuOption.CREATE.getValue();
-        int maxMenuValue = MenuOption.EXIT.getValue();
+        while (running) {
+            System.out.println(
+                    "\n========== WELCOME TO STUDENT MANAGEMENT ==========");
+            System.out.println(AppConfigs.CREATE + ". Create");
+            System.out.println(AppConfigs.FIND_AND_SORT + ". Find and Sort");
+            System.out.println(AppConfigs.UPDATE_OR_DELETE + ". Update/Delete");
+            System.out.println(AppConfigs.REPORT + ". Report");
+            System.out.println(AppConfigs.EXIT + ". Exit");
+            System.out.println(
+                    "==================================================");
 
-        boolean isRunning = true;
+            int choice = Validation.readInteger(
+                    "Please choose (1-5): ",
+                    AppConfigs.CREATE, AppConfigs.EXIT,
+                    "Error: Input must be a number!",
+                    "Error: Choice must be from 1 to 5!");
 
-        while (isRunning) {
-            System.out.println("\n================ WELCOME TO STUDENT MANAGEMENT ================");
-            System.out.println(MenuOption.CREATE.getValue() + ". Create");
-            System.out.println(MenuOption.FIND_AND_SORT.getValue() + ". Find and Sort");
-            System.out.println(MenuOption.UPDATE_OR_DELETE.getValue() + ". Update/Delete");
-            System.out.println(MenuOption.REPORT.getValue() + ". Report");
-            System.out.println(MenuOption.EXIT.getValue() + ". Exit");
-            System.out.println("===============================================================");
-
-            int rawChoice = Validation.inputInt(
-                    "Please choose (" + minMenuValue + "-" + maxMenuValue + "): ",
-                    minMenuValue,
-                    maxMenuValue,
-                    "Error: Input must be a valid number!",
-                    "Error: Choice must be between " + minMenuValue + " and " + maxMenuValue + "!"
-            );
-
-            MenuOption option = MenuOption.fromInt(rawChoice);
-
-            if (option == null) {
-                System.err.println("Error: Internal error matching option selection symbol.");
-                continue;
-            }
-
-            switch (option) {
-                case CREATE:
+            switch (choice) {
+                case 1:
                     manager.createStudent();
                     break;
-                case FIND_AND_SORT:
+                case 2:
                     manager.findAndSort();
                     break;
-                case UPDATE_OR_DELETE:
+                case 3:
                     manager.updateOrDelete();
                     break;
-                case REPORT:
+                case 4:
                     manager.generateReport();
                     break;
-                case EXIT:
-                    System.out.println("Thank you for using the system. Goodbye!");
-                    isRunning = false;
-                    break;
-                default:
+                case 5:
+                    System.out.println(
+                            "Thank you for using the system. Goodbye!");
+                    running = false;
                     break;
             }
         }

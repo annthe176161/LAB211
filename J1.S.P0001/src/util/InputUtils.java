@@ -12,6 +12,9 @@ import java.util.Scanner;
  */
 public class InputUtils {
 
+    private InputUtils() {
+    }
+
     private static final Scanner SCANNER = new Scanner(System.in);
 
     /**
