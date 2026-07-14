@@ -1,5 +1,8 @@
 package entity;
 
+import constant.DisplayMessages;
+import constant.ShapeConstants;
+
 /**
  * Represents a triangle with three side lengths.
  */
@@ -21,8 +24,13 @@ public class Triangle extends Shape {
      * @param sideA first side length
      * @param sideB second side length
      * @param sideC third side length
+     * @throws IllegalArgumentException if sides do not form a valid triangle
      */
     public Triangle(double sideA, double sideB, double sideC) {
+        if (!isValid(sideA, sideB, sideC)) {
+            throw new IllegalArgumentException(
+                    "Sides do not form a valid triangle.");
+        }
         this.sideA = sideA;
         this.sideB = sideB;
         this.sideC = sideC;
@@ -101,7 +109,7 @@ public class Triangle extends Shape {
      */
     @Override
     public double getArea() {
-        double s = getPerimeter() / 2;
+        double s = getPerimeter() / ShapeConstants.TRIANGLE_HALF_DIVISOR;
         return Math.sqrt(s * (s - this.sideA) * (s - this.sideB)
                 * (s - this.sideC));
     }
@@ -121,11 +129,11 @@ public class Triangle extends Shape {
      */
     @Override
     public void printResult() {
-        System.out.println("-----Triangle-----");
-        System.out.println("Side A: " + this.sideA);
-        System.out.println("Side B: " + this.sideB);
-        System.out.println("Side C: " + this.sideC);
-        System.out.println("Area: " + getArea());
-        System.out.println("Perimeter: " + getPerimeter());
+        System.out.println(DisplayMessages.TRIANGLE_HEADER);
+        System.out.println(DisplayMessages.LABEL_SIDE_A + this.sideA);
+        System.out.println(DisplayMessages.LABEL_SIDE_B + this.sideB);
+        System.out.println(DisplayMessages.LABEL_SIDE_C + this.sideC);
+        System.out.println(DisplayMessages.LABEL_AREA + getArea());
+        System.out.println(DisplayMessages.LABEL_PERIMETER + getPerimeter());
     }
 }

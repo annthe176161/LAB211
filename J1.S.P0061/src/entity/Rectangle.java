@@ -1,5 +1,8 @@
 package entity;
 
+import constant.DisplayMessages;
+import constant.ShapeConstants;
+
 /**
  * Represents a rectangle with a width and a length.
  */
@@ -19,8 +22,13 @@ public class Rectangle extends Shape {
      *
      * @param width width of the rectangle
      * @param length length of the rectangle
+     * @throws IllegalArgumentException if width or length is not positive
      */
     public Rectangle(double width, double length) {
+        if (width <= 0 || length <= 0) {
+            throw new IllegalArgumentException(
+                    "Width and length must be greater than 0.");
+        }
         this.width = width;
         this.length = length;
     }
@@ -78,7 +86,7 @@ public class Rectangle extends Shape {
      */
     @Override
     public double getPerimeter() {
-        return (this.width + this.length) * 2;
+        return (this.width + this.length) * ShapeConstants.RECTANGLE_SIDE_COUNT;
     }
 
     /**
@@ -86,10 +94,10 @@ public class Rectangle extends Shape {
      */
     @Override
     public void printResult() {
-        System.out.println("-----Rectangle-----");
-        System.out.println("Width: " + this.width);
-        System.out.println("Length: " + this.length);
-        System.out.println("Area: " + getArea());
-        System.out.println("Perimeter: " + getPerimeter());
+        System.out.println(DisplayMessages.RECTANGLE_HEADER);
+        System.out.println(DisplayMessages.LABEL_WIDTH + this.width);
+        System.out.println(DisplayMessages.LABEL_LENGTH + this.length);
+        System.out.println(DisplayMessages.LABEL_AREA + getArea());
+        System.out.println(DisplayMessages.LABEL_PERIMETER + getPerimeter());
     }
 }

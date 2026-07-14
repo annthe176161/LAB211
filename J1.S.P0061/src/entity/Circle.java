@@ -1,5 +1,8 @@
 package entity;
 
+import constant.DisplayMessages;
+import constant.ShapeConstants;
+
 /**
  * Represents a circle with a radius.
  */
@@ -17,8 +20,13 @@ public class Circle extends Shape {
      * Creates a circle with the specified radius.
      *
      * @param radius radius of the circle
+     * @throws IllegalArgumentException if radius is not positive
      */
     public Circle(double radius) {
+        if (radius <= 0) {
+            throw new IllegalArgumentException(
+                    "Radius must be greater than 0.");
+        }
         this.radius = radius;
     }
 
@@ -57,7 +65,7 @@ public class Circle extends Shape {
      */
     @Override
     public double getPerimeter() {
-        return 2 * Math.PI * this.radius;
+        return ShapeConstants.CIRCLE_DIAMETER_FACTOR * Math.PI * this.radius;
     }
 
     /**
@@ -65,9 +73,9 @@ public class Circle extends Shape {
      */
     @Override
     public void printResult() {
-        System.out.println("-----Circle-----");
-        System.out.println("Radius: " + this.radius);
-        System.out.println("Area: " + getArea());
-        System.out.println("Perimeter: " + getPerimeter());
+        System.out.println(DisplayMessages.CIRCLE_HEADER);
+        System.out.println(DisplayMessages.LABEL_RADIUS + this.radius);
+        System.out.println(DisplayMessages.LABEL_AREA + getArea());
+        System.out.println(DisplayMessages.LABEL_PERIMETER + getPerimeter());
     }
 }
