@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entity;
 
 /**
- *
- * @author admin
+ * Stores personal information including name,
+ * address, and salary.
  */
 public class Person {
 
@@ -17,6 +13,13 @@ public class Person {
     public Person() {
     }
 
+    /**
+     * Creates a new Person with the given details.
+     *
+     * @param name    the person's name
+     * @param address the person's address
+     * @param salary  the person's salary
+     */
     public Person(String name, String address, double salary) {
         this.name = name;
         this.address = address;

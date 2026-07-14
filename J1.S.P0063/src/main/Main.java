@@ -1,64 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import entity.Person;
 import java.util.Scanner;
-import repository.PersonRepository;
+import service.PersonService;
 import view.PersonView;
 
 /**
- *
- * @author admin
+ * Entry point for the Person management program.
  */
 public class Main {
 
     private static final int MAX_PERSONS = 3;
 
-    public static void main(String[] args) {
+    /**
+     * Runs the program.
+     *
+     * @param args command line arguments
+     * @throws Exception if sorting fails
+     */
+    public static void main(String[] args)
+            throws Exception {
         Scanner scanner = new Scanner(System.in);
-
         PersonView view = new PersonView();
-        PersonRepository repo = new PersonRepository();
+        PersonService service = new PersonService();
 
-        Person[] persons = new Person[MAX_PERSONS];
+        System.out.println(
+                "=====Management Person programer=====");
 
-        System.out.println("=====Management Person  programer=====");
+        Person[] persons = view.inputAllPersons(
+                scanner, MAX_PERSONS);
 
-        int count = 0;
-        while (count < MAX_PERSONS) {
-            System.out.println("Input Information of Person");
+        Person[] sorted =
+                service.sortBySalary(persons);
 
-            System.out.print("Please input name:");
-            String name = scanner.nextLine().trim();
-
-            System.out.print("Please input address:");
-            String address = scanner.nextLine().trim();
-
-            // Reusable function to get positive double for salary
-            double salary = view.inputPositiveDouble(scanner, "Please input salary:");
-
-            Person newPerson = repo.createPerson(name, address, salary);
-
-            if (newPerson != null) {
-                persons[count] = newPerson;
-                count = count + 1;
-            } else {
-                System.out.println("Input failed. Please enter information again.");
-            }
+        for (int i = 0; i < sorted.length; i++) {
+            view.displayPersonInfo(sorted[i]);
+            System.out.println();
         }
 
-        // Sort the data
-        Person[] sortedPersons = repo.sortBySalary(persons);
-
-        // Display the results
-        for (int i = 0; i < sortedPersons.length; i++) {
-            view.displayPersonInfo(sortedPersons[i]);
-        }
-
-        System.out.println("=====Management Person programer=====");
+        System.out.println(
+                "=====Management Person programer=====");
         scanner.close();
     }
 }

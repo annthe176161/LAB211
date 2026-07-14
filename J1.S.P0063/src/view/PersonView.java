@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view;
 
 import constant.MessageConstant;
@@ -9,57 +5,109 @@ import entity.Person;
 import java.util.Scanner;
 
 /**
- *
- * @author admin
+ * Handles user input and display
+ * for Person objects.
  */
 public class PersonView {
 
     /**
-     * Prompts the user to input a positive double value. This method can be
-     * reused for any positive number inputs.
+     * Validates salary input and creates a Person.
      *
-     * @param scanner the Scanner object for user input
-     * @param prompt the message displayed to guide the user
-     * @return a valid positive double value entered by the user
+     * @param name    the person's name
+     * @param address the person's address
+     * @param sSalary the salary string to validate
+     * @return a valid Person object
+     * @throws Exception if salary input is invalid
      */
-    public double inputPositiveDouble(Scanner scanner, String prompt) {
-        boolean isValid = false;
-        double value = 0;
-
-        while (isValid == false) {
-            System.out.print(prompt);
-            String input = scanner.nextLine().trim();
-
-            if (input.isEmpty()) {
-                System.out.println(MessageConstant.ERROR_DIGIT);
-            } else {
-                try {
-                    value = Double.parseDouble(input);
-                    if (value <= 0) {
-                        System.out.println(MessageConstant.ERROR_GREATER_THAN_ZERO);
-                    } else {
-                        isValid = true;
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println(MessageConstant.ERROR_DIGIT);
-                }
-            }
+    public Person inputPersonInfo(
+            String name,
+            String address,
+            String sSalary) throws Exception {
+        if (sSalary == null
+                || sSalary.trim().isEmpty()) {
+            throw new Exception(
+                    MessageConstant.ERROR_EMPTY_SALARY);
         }
-        return value;
+        double salary;
+        try {
+            salary = Double.parseDouble(
+                    sSalary.trim());
+        } catch (NumberFormatException e) {
+            throw new Exception(
+                    MessageConstant.ERROR_DIGIT);
+        }
+        if (salary <= 0) {
+            throw new Exception(
+                    MessageConstant
+                            .ERROR_GREATER_THAN_ZERO);
+        }
+        return new Person(name, address, salary);
     }
 
     /**
-     * Displays information of a Person object to the screen.
+     * Prompts user to input all persons.
+     * Re-asks salary until valid input is given.
      *
-     * @param person the Person object to be displayed
+     * @param scanner the Scanner for user input
+     * @param count   number of persons to input
+     * @return array of valid Person objects
+     */
+    public Person[] inputAllPersons(
+            Scanner scanner, int count) {
+        Person[] persons = new Person[count];
+        int index = 0;
+        while (index < count) {
+            System.out.println(
+                    "Input Information of Person");
+
+            System.out.print("Please input name: ");
+            String name =
+                    scanner.nextLine().trim();
+
+            System.out.print(
+                    "Please input address: ");
+            String address =
+                    scanner.nextLine().trim();
+
+            boolean done = false;
+            while (!done) {
+                System.out.print(
+                        "Please input salary: ");
+                String sSalary =
+                        scanner.nextLine().trim();
+                try {
+                    Person p = inputPersonInfo(
+                            name, address, sSalary);
+                    persons[index] = p;
+                    index++;
+                    done = true;
+                } catch (Exception e) {
+                    System.out.println(
+                            e.getMessage());
+                }
+            }
+            System.out.println();
+        }
+        return persons;
+    }
+
+    /**
+     * Prints person information to the console.
+     *
+     * @param person the Person to display
      */
     public void displayPersonInfo(Person person) {
         if (person == null) {
             return;
         }
-        System.out.println("Information of Person you have entered:");
-        System.out.println("Name:" + person.getName());
-        System.out.println("Address:" + person.getAddress());
-        System.out.println("Salary:" + person.getSalary());
+        System.out.println(
+                "Information of Person"
+                        + " you have entered:");
+        System.out.println(
+                "Name: " + person.getName());
+        System.out.println(
+                "Address: " + person.getAddress());
+        System.out.println(
+                "Salary: " + person.getSalary());
     }
 }
