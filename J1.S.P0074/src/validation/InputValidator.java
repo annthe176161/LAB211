@@ -1,33 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package validation;
 
 import java.util.Scanner;
 
 /**
- *
- * @author admin
+ * Provides reusable input validation methods.
  */
 public class InputValidator {
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner =
+            new Scanner(System.in);
+
+    private InputValidator() {
+    }
 
     /**
-     * Validates that the input from console is an integer greater than 0.
+     * Input an integer greater than 0.
      *
-     * @param promptMessage the message asking for input
-     * @param formatError the error message if the input is not a number
-     * @param valueError the error message if the input is less than or equal to
-     * 0
-     * @return a valid integer greater than 0
+     * @param prompt message to display
+     * @param formatError error for non-number input
+     * @param valueError error for value <= 0
+     * @return valid integer > 0
      */
-    public static int checkInputInt(String promptMessage, String formatError, String valueError) {
+    public static int checkInputInt(
+            String prompt,
+            String formatError,
+            String valueError) {
         while (true) {
             try {
-                System.out.print(promptMessage);
-                int result = Integer.parseInt(scanner.nextLine().trim());
+                System.out.print(prompt);
+                final int result =
+                        Integer.parseInt(
+                                scanner.nextLine()
+                                        .trim());
                 if (result > 0) {
                     return result;
                 } else {
@@ -40,18 +44,20 @@ public class InputValidator {
     }
 
     /**
-     * Validates that the input is a proper integer (can be positive, negative,
-     * or zero).
+     * Input a valid integer (positive, negative, or 0).
      *
-     * @param promptMessage the message asking for input
-     * @param formatError the error message if the input is not a valid number
-     * @return a valid integer value
+     * @param prompt message to display
+     * @param formatError error for non-number input
+     * @return valid integer
      */
-    public static int checkMatrixValue(String promptMessage, String formatError) {
+    public static int checkMatrixValue(
+            String prompt,
+            String formatError) {
         while (true) {
             try {
-                System.out.print(promptMessage);
-                return Integer.parseInt(scanner.nextLine().trim());
+                System.out.print(prompt);
+                return Integer.parseInt(
+                        scanner.nextLine().trim());
             } catch (NumberFormatException e) {
                 System.out.println(formatError);
             }
@@ -59,21 +65,30 @@ public class InputValidator {
     }
 
     /**
-     * Validates that the input integer is strictly within a given range.
+     * Input an integer within a range.
      *
-     * @param min the minimum allowed boundary
-     * @param max the maximum allowed boundary
-     * @param promptMessage the message asking for input
-     * @param formatError the error message if the input is not a number
-     * @param rangeError the error message if the input is out of range
-     * @return a valid integer within the boundary limits
+     * @param min minimum value
+     * @param max maximum value
+     * @param prompt message to display
+     * @param formatError error for non-number input
+     * @param rangeError error for out-of-range input
+     * @return valid integer within range
      */
-    public static int checkInputIntLimit(int min, int max, String promptMessage, String formatError, String rangeError) {
+    public static int checkInputIntLimit(
+            int min,
+            int max,
+            String prompt,
+            String formatError,
+            String rangeError) {
         while (true) {
             try {
-                System.out.print(promptMessage);
-                int result = Integer.parseInt(scanner.nextLine().trim());
-                if (result >= min && result <= max) {
+                System.out.print(prompt);
+                final int result =
+                        Integer.parseInt(
+                                scanner.nextLine()
+                                        .trim());
+                if (result >= min
+                        && result <= max) {
                     return result;
                 } else {
                     System.out.println(rangeError);

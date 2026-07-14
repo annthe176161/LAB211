@@ -1,40 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
-import biz.MatrixOperation;
+import constant.MatrixOperation;
 import validation.InputValidator;
 import view.MatrixUI;
 
 /**
- *
- * @author admin
+ * Entry point for the matrix calculator program.
  */
 public class Main {
 
+    /**
+     * Main method.
+     *
+     * @param args command-line arguments (not used)
+     */
     public static void main(String[] args) {
-        MatrixUI ui = new MatrixUI();
+        final MatrixUI ui = new MatrixUI();
         boolean isRunning = true;
 
-        while (isRunning == true) {
+        while (isRunning) {
             ui.displayMenu();
 
-            int choice = InputValidator.checkInputIntLimit(
-                    1, 4,
-                    "Your choice: ",
-                    "Please input a valid choice.",
-                    "Please input a number inside the range [1, 4]"
-            );
+            final int choice =
+                    InputValidator.checkInputIntLimit(
+                            1, 4,
+                            "Your choice: ",
+                            "Please input a valid choice.",
+                            "Please input a number "
+                            + "inside the range [1, 4]"
+                    );
 
-            MatrixOperation operation = MatrixOperation.fromChoice(choice);
-
-            if (operation == MatrixOperation.QUIT) {
-                System.out.println("Exiting program...");
+            if (choice == MatrixOperation.QUIT) {
+                System.out.println(
+                        "Exiting program...");
                 isRunning = false;
             } else {
-                ui.performMatrixOperation(operation);
+                ui.performMatrixOperation(choice);
                 System.out.println();
             }
         }
