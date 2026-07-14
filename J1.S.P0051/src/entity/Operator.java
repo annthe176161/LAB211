@@ -1,18 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
- */
 package entity;
 
 /**
- *
- * @author admin
+ * Defines math operators for calculator.
  */
 public enum Operator {
+
+    /** Addition. */
     ADD,
+
+    /** Subtraction. */
     SUBTRACT,
+
+    /** Multiplication. */
     MULTIPLY,
+
+    /** Division. */
     DIVIDE,
+
+    /** Exponentiation. */
     EXPONENT,
+
+    /** Equals sign to end calculation. */
     EQUAL
 }
