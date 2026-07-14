@@ -4,7 +4,8 @@
  */
 package controller;
 
-import bo.EquationSolver;
+import constant.MenuConstant;
+import service.EquationSolver;
 import java.util.ArrayList;
 import java.util.List;
 import ui.ConsoleView;
@@ -14,10 +15,6 @@ import ui.ConsoleView;
  * @author admin
  */
 public class EquationController {
-
-    public static final String OPTION_SUPERLATIVE = "1";
-    public static final String OPTION_QUADRATIC = "2";
-    public static final String OPTION_EXIT = "3";
 
     private ConsoleView view = new ConsoleView();
     private EquationSolver solver = new EquationSolver();
@@ -30,11 +27,11 @@ public class EquationController {
             view.displayMenu();
             String choice = view.getUserInput("Please choice one option: ");
 
-            if (choice.equals(OPTION_SUPERLATIVE) == true) {
+            if (choice.equals(MenuConstant.OPTION_SUPERLATIVE) == true) {
                 handleSuperlative();
-            } else if (choice.equals(OPTION_QUADRATIC) == true) {
+            } else if (choice.equals(MenuConstant.OPTION_QUADRATIC) == true) {
                 handleQuadratic();
-            } else if (choice.equals(OPTION_EXIT) == true) {
+            } else if (choice.equals(MenuConstant.OPTION_EXIT) == true) {
                 break;
             } else {
                 System.out.println("Invalid option. Please choose 1, 2, or 3.");

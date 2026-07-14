@@ -8,7 +8,7 @@ package common;
  *
  * @author admin
  */
-public class NumberValidation {
+public class Number {
 
     /**
      * Validates and parses a string into a Float object.
@@ -16,7 +16,7 @@ public class NumberValidation {
      * @param floatString the string input to validate
      * @return the parsed Float value, or null if invalid
      */
-    public static Float checkIn(String floatString) {
+    public Float checkIn(String floatString) {
         try {
             float number = Float.parseFloat(floatString);
             return number;
@@ -31,7 +31,7 @@ public class NumberValidation {
      * @param number the float number to check
      * @return true if odd, false otherwise
      */
-    public static boolean isOdd(float number) {
+    public boolean isOdd(float number) {
         if (number % 2 != 0) {
             return true;
         } else {
@@ -45,7 +45,7 @@ public class NumberValidation {
      * @param number the float number to check
      * @return true if even, false otherwise
      */
-    public static boolean isEven(float number) {
+    public boolean isEven(float number) {
         if (number % 2 == 0) {
             return true;
         } else {
@@ -59,7 +59,7 @@ public class NumberValidation {
      * @param number the float number to check
      * @return true if a perfect square, false otherwise
      */
-    public static boolean isPerfectSquare(float number) {
+    public boolean isPerfectSquare(float number) {
         if (number < 0) {
             return false;
         }

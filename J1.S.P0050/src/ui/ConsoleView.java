@@ -4,7 +4,7 @@
  */
 package ui;
 
-import common.NumberValidation;
+import common.Number;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class ConsoleView {
 
     private Scanner scanner = new Scanner(System.in);
+    private Number number = new Number();
 
     /**
      * Prompts user for an input string and returns it.
@@ -39,7 +40,7 @@ public class ConsoleView {
         while (true) {
             System.out.print(prompt);
             String inputStr = scanner.nextLine();
-            Float validNumber = NumberValidation.checkIn(inputStr);
+            Float validNumber = number.checkIn(inputStr);
 
             if (validNumber != null) {
                 return validNumber;
@@ -93,13 +94,13 @@ public class ConsoleView {
         for (int i = 0; i < numbers.size(); i++) {
             float currentNumber = numbers.get(i);
 
-            if (NumberValidation.isOdd(currentNumber) == true) {
+            if (number.isOdd(currentNumber) == true) {
                 oddList.add(currentNumber);
             }
-            if (NumberValidation.isEven(currentNumber) == true) {
+            if (number.isEven(currentNumber) == true) {
                 evenList.add(currentNumber);
             }
-            if (NumberValidation.isPerfectSquare(currentNumber) == true) {
+            if (number.isPerfectSquare(currentNumber) == true) {
                 squareList.add(currentNumber);
             }
         }
