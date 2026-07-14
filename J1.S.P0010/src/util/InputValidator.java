@@ -4,40 +4,44 @@ import java.util.Scanner;
 
 /**
  * Utility class for validating user input.
- * 
+ *
  * @author admin
  */
 public class InputValidator {
 
-    private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER =
+            new Scanner(System.in);
 
     /**
-     * Private constructor to prevent instantiation.
+     * Prevents instantiation.
      */
     private InputValidator() {
         throw new AssertionError();
     }
 
     /**
-     * Prompts the user and returns a validated integer within a range.
+     * Reads and validates an integer from the user.
      *
-     * @param message the prompt message
-     * @param min the minimum allowed value
-     * @param max the maximum allowed value
-     * @param errorRange the error message for out-of-range input
-     * @param errorFormat the error message for invalid format
-     * @return a valid integer between min and max
+     * @param message prompt to display
+     * @param min minimum allowed value
+     * @param max maximum allowed value
+     * @param errorRange message for out-of-range
+     * @param errorFormat message for invalid format
+     * @return a valid integer within [min, max]
      */
-    public static int getInteger(String message, int min, int max,
+    public static int getInteger(
+            String message, int min, int max,
             String errorRange, String errorFormat) {
         while (true) {
             try {
                 System.out.println(message);
-                String input = SCANNER.nextLine().trim();
+                final String input =
+                        SCANNER.nextLine().trim();
+                final int result =
+                        Integer.parseInt(input);
 
-                int result = Integer.parseInt(input);
-
-                if (result >= min && result <= max) {
+                if (result >= min
+                        && result <= max) {
                     return result;
                 }
                 System.err.println(errorRange);

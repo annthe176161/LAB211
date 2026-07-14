@@ -1,20 +1,21 @@
 package service;
 
 /**
- * Service class for searching operations on arrays.
- * 
+ * Provides linear search operations on arrays.
+ *
  * @author admin
  */
 public class SearchService {
 
     /**
-     * Finds all index positions of a search value in an array.
+     * Finds all indices of a value in an array.
      *
      * @param array the array to search
-     * @param searchValue the value to search for
-     * @return an array of indices where the search value is found
+     * @param searchValue value to find
+     * @return array of matching indices
      */
-    public int[] findAllValuePositions(int[] array, int searchValue) {
+    public int[] findAllValuePositions(
+            int[] array, int searchValue) {
         if (array == null || array.length == 0) {
             return new int[0];
         }
@@ -26,7 +27,8 @@ public class SearchService {
             }
         }
 
-        int[] resultIndices = new int[count];
+        final int[] resultIndices =
+                new int[count];
         int index = 0;
         for (int i = 0; i < array.length; i++) {
             if (array[i] == searchValue) {

@@ -3,22 +3,27 @@ package array;
 import java.util.Random;
 
 /**
- * Class for handling array generation.
- * 
+ * Handles random array generation.
+ *
  * @author admin
  */
 public class ArrayHandler {
 
-    private static final Random RANDOM = new Random();
+    private static final Random RANDOM =
+            new Random();
 
     /**
-     * Generates an array with random integers.
+     * Generates an array of random integers.
      *
-     * @param size the number of elements in the array
-     * @return an array of random integers
+     * @param size number of elements (> 0)
+     * @return random integer array
      */
     public int[] generateRandomArray(int size) {
-        int[] array = new int[size];
+        if (size <= 0) {
+            throw new IllegalArgumentException(
+                    "Size must be greater than 0");
+        }
+        final int[] array = new int[size];
         for (int i = 0; i < size; i++) {
             array[i] = RANDOM.nextInt(size + 1);
         }
