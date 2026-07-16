@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ui;
 
 import common.Number;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 /**
- *
- * @author admin
+ * Console view for user interaction.
  */
 public class ConsoleView {
 
@@ -31,7 +27,8 @@ public class ConsoleView {
     }
 
     /**
-     * Continuously prompts user until a valid float value is entered.
+     * Continuously prompts user until a valid float
+     * value is entered.
      *
      * @param prompt message to display
      * @return a valid float value
@@ -54,9 +51,12 @@ public class ConsoleView {
      * Displays the main program menu options.
      */
     public void displayMenu() {
-        System.out.println("========= Equation Program =========");
-        System.out.println("1. Calculate Superlative Equation");
-        System.out.println("2. Calculate Quadratic Equation");
+        System.out.println(
+                "========= Equation Program =========");
+        System.out.println(
+                "1. Calculate Superlative Equation");
+        System.out.println(
+                "2. Calculate Quadratic Equation");
         System.out.println("3. Exit");
     }
 
@@ -68,21 +68,25 @@ public class ConsoleView {
     public void displaySolutions(List<Float> solutions) {
         if (solutions == null) {
             System.out.println("Solution: No solution");
-        } else if (solutions.isEmpty() == true) {
-            System.out.println("Solution: Infinitely many solutions");
+        } else if (solutions.isEmpty()) {
+            System.out.println(
+                    "Solution: Infinitely many solutions");
         } else if (solutions.size() == 1) {
             float x = solutions.get(0);
-            System.out.printf("Solution: x = %.3f\n", x);
+            System.out.printf(
+                    "Solution: x = %.3f\n", x);
         } else {
             float x1 = solutions.get(0);
             float x2 = solutions.get(1);
-            System.out.printf("Solution: x1 = %.3f and x2 = %.3f\n", x1, x2);
+            System.out.printf(
+                    "Solution: x1 = %.3f"
+                    + " and x2 = %.3f\n", x1, x2);
         }
     }
 
     /**
-     * Groups and displays specific properties (odd, even, perfect square) from
-     * the collected list.
+     * Groups and displays specific properties
+     * (odd, even, perfect square) from the collected list.
      *
      * @param numbers combined list of inputs and roots
      */
@@ -94,13 +98,13 @@ public class ConsoleView {
         for (int i = 0; i < numbers.size(); i++) {
             float currentNumber = numbers.get(i);
 
-            if (number.isOdd(currentNumber) == true) {
+            if (number.isOdd(currentNumber)) {
                 oddList.add(currentNumber);
             }
-            if (number.isEven(currentNumber) == true) {
+            if (number.isEven(currentNumber)) {
                 evenList.add(currentNumber);
             }
-            if (number.isPerfectSquare(currentNumber) == true) {
+            if (number.isPerfectSquare(currentNumber)) {
                 squareList.add(currentNumber);
             }
         }
@@ -116,13 +120,12 @@ public class ConsoleView {
     }
 
     /**
-     * Custom print format to display arrays of float without trailing square
-     * brackets.
+     * Prints list elements separated by commas.
      *
      * @param list the list of elements to display
      */
     private void printFormattedList(List<Float> list) {
-        if (list.isEmpty() == true) {
+        if (list.isEmpty()) {
             System.out.println();
             return;
         }

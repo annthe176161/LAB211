@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author admin
+ * Solver for linear and quadratic equations.
  */
 public class EquationSolver {
 
@@ -18,16 +13,17 @@ public class EquationSolver {
      *
      * @param a coefficient A
      * @param b coefficient B
-     * @return List of solutions (empty if infinitely many, null if no solution)
+     * @return list of solutions, null if no solution,
+     *         empty if infinitely many solutions
      */
     public List<Float> calculateEquation(float a, float b) {
         List<Float> solutions = new ArrayList<Float>();
 
         if (a == 0) {
             if (b == 0) {
-                return solutions; // Infinitely many solutions
+                return solutions;
             } else {
-                return null; // No solution
+                return null;
             }
         }
 
@@ -42,9 +38,11 @@ public class EquationSolver {
      * @param a coefficient A
      * @param b coefficient B
      * @param c coefficient C
-     * @return List of solutions (empty if infinitely many, null if no solution)
+     * @return list of solutions, null if no solution,
+     *         empty if infinitely many solutions
      */
-    public List<Float> calculateQuadraticEquation(float a, float b, float c) {
+    public List<Float> calculateQuadraticEquation(
+            float a, float b, float c) {
         if (a == 0) {
             List<Float> result = calculateEquation(b, c);
             return result;
@@ -54,14 +52,16 @@ public class EquationSolver {
         float delta = (b * b) - (4 * a * c);
 
         if (delta < 0) {
-            return null; // No solution
+            return null;
         } else if (delta == 0) {
             float x = -b / (2 * a);
             solutions.add(x);
-            solutions.add(x); // Display x1 = x2 as requested by UI format
+            solutions.add(x);
         } else {
-            float x1 = (float) ((-b + Math.sqrt(delta)) / (2 * a));
-            float x2 = (float) ((-b - Math.sqrt(delta)) / (2 * a));
+            float x1 = (float) (
+                    (-b + Math.sqrt(delta)) / (2 * a));
+            float x2 = (float) (
+                    (-b - Math.sqrt(delta)) / (2 * a));
             solutions.add(x1);
             solutions.add(x2);
         }
