@@ -1,5 +1,6 @@
 package controller;
 
+import static constant.AppConstants.EMPTY_INPUT_ERROR;
 import static constant.AppConstants.INPUT_PROMPT;
 
 import java.util.Map;
@@ -28,7 +29,9 @@ public class WordCountController {
      */
     public void run() {
         String content = inputView
-                .getNonEmptyString(INPUT_PROMPT);
+                .getNonEmptyString(
+                        INPUT_PROMPT,
+                        EMPTY_INPUT_ERROR);
 
         Map<String, Integer> wordResult =
                 countService.countWords(content);
@@ -49,22 +52,7 @@ public class WordCountController {
     private void displayResult(
             Map<String, Integer> wordResult,
             Map<Character, Integer> charResult) {
-        System.out.println("Word count:");
-        for (Map.Entry<String, Integer> entry
-                : wordResult.entrySet()) {
-            System.out.println(
-                    "  " + entry.getKey()
-                            + " : "
-                            + entry.getValue());
-        }
-
-        System.out.println("Character count:");
-        for (Map.Entry<Character, Integer> entry
-                : charResult.entrySet()) {
-            System.out.println(
-                    "  " + entry.getKey()
-                            + " : "
-                            + entry.getValue());
-        }
+        System.out.println(wordResult);
+        System.out.println(charResult);
     }
 }

@@ -1,9 +1,10 @@
 package service;
 
-import static constant.AppConstants.DELIMITER_PATTERN;
+import static constant.AppConstants.DELIMITERS;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Provides word and character counting logic.
@@ -27,15 +28,15 @@ public class WordCountService {
             return wordMap;
         }
 
-        String[] tokens = content.split(
-                DELIMITER_PATTERN);
-        for (String token : tokens) {
-            String word = token.toLowerCase();
-            if (!word.isEmpty()) {
-                wordMap.put(word,
-                        wordMap.getOrDefault(word, 0)
-                                + 1);
-            }
+        StringTokenizer tokenizer =
+                new StringTokenizer(
+                        content, DELIMITERS);
+        while (tokenizer.hasMoreTokens()) {
+            String word = tokenizer.nextToken()
+                    .toLowerCase();
+            wordMap.put(word,
+                    wordMap.getOrDefault(word, 0)
+                            + 1);
         }
         return wordMap;
     }

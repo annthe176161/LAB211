@@ -22,22 +22,23 @@ public class InputView {
      * Keeps asking until a valid input is given.
      *
      * @param prompt the message shown to the user
+     * @param errorMsg the error message for invalid
+     *                 input
      * @return a valid non-empty string
      */
-    public String getNonEmptyString(String prompt) {
+    public String getNonEmptyString(
+            String prompt, String errorMsg) {
         String input;
-        do {
+        while (true) {
             System.out.println(prompt);
             input = scanner.nextLine();
             if (input == null
                     || input.trim().isEmpty()) {
-                System.out.println(
-                        "Input cannot be empty!"
-                        + " Please enter again.");
+                System.out.println(errorMsg);
             } else {
                 break;
             }
-        } while (true);
+        }
         return input;
     }
 }
