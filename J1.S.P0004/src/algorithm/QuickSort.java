@@ -1,39 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package algorithm;
 
 import enums.SortOrder;
 
 /**
- *
- * @author admin
+ * Provides Quick Sort algorithm implementation
+ * with support for ascending and descending order.
+ * Uses divide-and-conquer strategy with
+ * middle-element pivot selection.
  */
 public class QuickSort {
 
     /**
-     * Public method to start the sorting process with validation.
+     * Sorts the given array using Quick Sort.
+     * Performs null and length check before sorting.
      *
      * @param array The target array to sort.
-     * @param order The sorting direction (ASCENDING or DESCENDING).
+     * @param order The sorting direction.
      */
     public void sort(int[] array, SortOrder order) {
         if (array == null || array.length <= 1) {
             return;
         }
-        quickSort(array, 0, array.length - 1, order);
+        quickSort(array, 0,
+                array.length - 1, order);
     }
 
     /**
-     * Internal recursive algorithm driven by SortOrder enum.
+     * Recursively partitions and sorts
+     * the sub-array between left and right.
      *
      * @param array The target array to sort.
-     * @param left The starting index of the partition.
-     * @param right The ending index of the partition.
-     * @param order The sorting direction (ASCENDING or DESCENDING).
+     * @param left  The starting index of partition.
+     * @param right The ending index of partition.
+     * @param order The sorting direction.
      */
-    private void quickSort(int[] array, int left, int right, SortOrder order) {
+    private void quickSort(int[] array, int left,
+            int right, SortOrder order) {
         if (left >= right) {
             return;
         }
@@ -43,20 +45,25 @@ public class QuickSort {
         int pivot = array[(left + right) / 2];
 
         while (i <= j) {
-            if (order == SortOrder.ASCENDING) {
-                while (array[i] < pivot) {
-                    i++;
-                }
-                while (array[j] > pivot) {
-                    j--;
-                }
-            } else if (order == SortOrder.DESCENDING) {
-                while (array[i] > pivot) {
-                    i++;
-                }
-                while (array[j] < pivot) {
-                    j--;
-                }
+            switch (order) {
+                case ASCENDING:
+                    while (array[i] < pivot) {
+                        i++;
+                    }
+                    while (array[j] > pivot) {
+                        j--;
+                    }
+                    break;
+                case DESCENDING:
+                    while (array[i] > pivot) {
+                        i++;
+                    }
+                    while (array[j] < pivot) {
+                        j--;
+                    }
+                    break;
+                default:
+                    break;
             }
 
             if (i <= j) {
