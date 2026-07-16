@@ -1,40 +1,55 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import algorithm.InsertionSort;
 import constant.AppConstants;
 import enums.SortOrder;
 import helper.ArrayUtils;
+import java.util.Arrays;
 import util.InputUtils;
 
 /**
+ * Entry point of the Insertion Sort program.
  *
- * @author admin
+ * <p>Prompts the user for array size, generates a random
+ * array, then displays the array before and after sorting
+ * using the Insertion Sort algorithm.</p>
  */
 public class Main {
 
+    /**
+     * Main method - program entry.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         int size = InputUtils.getInteger(
                 "Enter number of array:\n",
                 AppConstants.MIN_SIZE,
                 AppConstants.MAX_SIZE,
-                "Error: Number must be a positive decimal number!",
-                "Error: Input must be a valid integer!"
+                "Error: Number must be "
+                        + "a positive decimal number!",
+                "Error: Input must be "
+                        + "a valid integer!"
         );
 
         ArrayUtils arrayUtils = new ArrayUtils();
         InsertionSort sorter = new InsertionSort();
 
         int[] array = arrayUtils.generateRandomArray(size);
-        arrayUtils.displayArray("Unsorted array: ", array);
+        System.out.println(
+                "Unsorted array: " + Arrays.toString(array)
+        );
 
         sorter.sort(array, SortOrder.ASCENDING);
-        arrayUtils.displayArray("Sorted array (Ascending): ", array);
+        System.out.println(
+                "Sorted array (Ascending): "
+                        + Arrays.toString(array)
+        );
 
         sorter.sort(array, SortOrder.DESCENDING);
-        arrayUtils.displayArray("Sorted array (Descending): ", array);
+        System.out.println(
+                "Sorted array (Descending): "
+                        + Arrays.toString(array)
+        );
     }
 }
