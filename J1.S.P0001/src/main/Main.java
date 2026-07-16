@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import algorithm.BubbleSort;
 import constant.AppConstants;
 import enums.SortOrder;
 import helper.ArrayUtils;
+import java.util.Arrays;
 import util.InputUtils;
 
 /**
@@ -16,25 +13,38 @@ import util.InputUtils;
  */
 public class Main {
 
+    /**
+     * Entry point of the program.
+     *
+     * @param args command-line arguments
+     */
     public static void main(String[] args) {
         int size = InputUtils.getInteger(
                 "Enter number of array:\n",
                 AppConstants.MIN_SIZE,
                 AppConstants.MAX_SIZE,
-                "Error: Number must be a positive decimal number!",
-                "Error: Input must be a valid integer!"
+                "Error: Number must be a positive"
+                        + " decimal number!",
+                "Error: Input must be a"
+                        + " valid integer!"
         );
 
         ArrayUtils arrayUtils = new ArrayUtils();
         BubbleSort sorter = new BubbleSort();
 
         int[] array = arrayUtils.generateRandomArray(size);
-        arrayUtils.displayArray("Unsorted array: ", array);
+        System.out.println(
+                "Unsorted array: "
+                        + Arrays.toString(array));
 
         sorter.sort(array, SortOrder.ASCENDING);
-        arrayUtils.displayArray("Sorted array (Ascending): ", array);
+        System.out.println(
+                "Sorted array (Ascending): "
+                        + Arrays.toString(array));
 
         sorter.sort(array, SortOrder.DESCENDING);
-        arrayUtils.displayArray("Sorted array (Descending): ", array);
+        System.out.println(
+                "Sorted array (Descending): "
+                        + Arrays.toString(array));
     }
 }
