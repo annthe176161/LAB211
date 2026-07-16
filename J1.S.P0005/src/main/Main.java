@@ -1,21 +1,26 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package main;
 
 import algorithm.MergeSort;
 import constant.AppConstants;
 import enums.SortOrder;
 import helper.ArrayUtils;
+import java.util.Arrays;
 import util.InputUtils;
 
 /**
- *
- * @author admin
+ * Main entry point for the Merge Sort application.
+ * Handles user input, array generation, and
+ * displays sorted results.
  */
 public class Main {
 
+    /**
+     * Runs the program: prompts user for array size,
+     * generates a random array, and displays the
+     * sorted result using Merge Sort.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
         int size = InputUtils.getInteger(
                 "Enter number of array:\n",
@@ -29,12 +34,18 @@ public class Main {
         MergeSort sorter = new MergeSort();
 
         int[] array = arrayUtils.generateRandomArray(size);
-        arrayUtils.displayArray("Unsorted array: ", array);
+        System.out.println(
+                "Unsorted array: "
+                        + Arrays.toString(array));
 
         sorter.sort(array, SortOrder.ASCENDING);
-        arrayUtils.displayArray("Sorted array (Ascending): ", array);
+        System.out.println(
+                "Sorted array (Ascending): "
+                        + Arrays.toString(array));
 
         sorter.sort(array, SortOrder.DESCENDING);
-        arrayUtils.displayArray("Sorted array (Descending): ", array);
+        System.out.println(
+                "Sorted array (Descending): "
+                        + Arrays.toString(array));
     }
 }

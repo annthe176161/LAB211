@@ -1,22 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package algorithm;
 
 import enums.SortOrder;
 
 /**
- *
- * @author admin
+ * Implements the Merge Sort algorithm for integer arrays.
+ * Supports both ascending and descending order sorting.
  */
 public class MergeSort {
 
     /**
-     * Public method to start the sorting process with safety validation.
+     * Public method to start the sorting process
+     * with safety validation.
      *
      * @param array The target array to sort.
-     * @param order The sorting direction (ASCENDING or DESCENDING).
+     * @param order The sorting direction
+     *              (ASCENDING or DESCENDING).
      */
     public void sort(int[] array, SortOrder order) {
         if (array == null || array.length <= 1) {
@@ -26,14 +24,17 @@ public class MergeSort {
     }
 
     /**
-     * Internal recursive method to divide the array.
+     * Internal recursive method to divide the array
+     * into smaller segments.
      *
      * @param array The target array.
-     * @param left The starting index of the segment.
+     * @param left  The starting index of the segment.
      * @param right The ending index of the segment.
-     * @param order The sorting direction (ASCENDING or DESCENDING).
+     * @param order The sorting direction
+     *              (ASCENDING or DESCENDING).
      */
-    private void mergeSort(int[] array, int left, int right, SortOrder order) {
+    private void mergeSort(int[] array, int left,
+            int right, SortOrder order) {
         if (left >= right) {
             return;
         }
@@ -47,16 +48,21 @@ public class MergeSort {
     }
 
     /**
-     * Internal helper method to merge two sorted segments using clean
-     * structures.
+     * Internal helper method to merge two sorted
+     * segments into one sorted segment.
      *
-     * @param array The target array.
-     * @param left The starting index of the left segment.
-     * @param middle The ending index of the left segment.
-     * @param right The ending index of the right segment.
-     * @param order The sorting direction (ASCENDING or DESCENDING).
+     * @param array  The target array.
+     * @param left   The starting index of the
+     *               left segment.
+     * @param middle The ending index of the
+     *               left segment.
+     * @param right  The ending index of the
+     *               right segment.
+     * @param order  The sorting direction
+     *               (ASCENDING or DESCENDING).
      */
-    private void merge(int[] array, int left, int middle, int right, SortOrder order) {
+    private void merge(int[] array, int left,
+            int middle, int right, SortOrder order) {
         int size = right - left + 1;
         int[] temp = new int[size];
 
