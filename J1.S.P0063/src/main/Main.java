@@ -16,30 +16,26 @@ public class Main {
      * Runs the program.
      *
      * @param args command line arguments
-     * @throws Exception if sorting fails
      */
-    public static void main(String[] args)
-            throws Exception {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         PersonView view = new PersonView();
         PersonService service = new PersonService();
 
-        System.out.println(
-                "=====Management Person programer=====");
+        view.displayBanner();
 
         Person[] persons = view.inputAllPersons(
                 scanner, MAX_PERSONS);
 
-        Person[] sorted =
-                service.sortBySalary(persons);
-
-        for (int i = 0; i < sorted.length; i++) {
-            view.displayPersonInfo(sorted[i]);
-            System.out.println();
+        try {
+            Person[] sorted =
+                    service.sortBySalary(persons);
+            view.displayAllPersons(sorted);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        System.out.println(
-                "=====Management Person programer=====");
+        view.displayBanner();
         scanner.close();
     }
 }

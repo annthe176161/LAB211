@@ -10,6 +10,16 @@ import java.util.Scanner;
  */
 public class PersonView {
 
+    private static final String BANNER =
+            "=====Management Person programer=====";
+
+    /**
+     * Shows the program banner.
+     */
+    public void displayBanner() {
+        System.out.println(BANNER);
+    }
+
     /**
      * Validates salary input and creates a Person.
      *
@@ -89,6 +99,18 @@ public class PersonView {
             System.out.println();
         }
         return persons;
+    }
+
+    /**
+     * Displays all persons in the array.
+     *
+     * @param persons the array of Person to display
+     */
+    public void displayAllPersons(Person[] persons) {
+        for (int i = 0; i < persons.length; i++) {
+            displayPersonInfo(persons[i]);
+            System.out.println();
+        }
     }
 
     /**
