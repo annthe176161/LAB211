@@ -16,10 +16,10 @@ public class Student {
     /**
      * Constructs a new Student with full details.
      *
-     * @param id the student ID
+     * @param id          the student ID
      * @param studentName the student name
-     * @param semester the semester
-     * @param courseName the course name
+     * @param semester    the semester
+     * @param courseName  the course name
      */
     public Student(
             String id, String studentName,

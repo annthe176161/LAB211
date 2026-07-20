@@ -25,8 +25,13 @@ public class AppConfigs {
     public static final List<String> ALLOWED_COURSES =
             Arrays.asList(COURSE_JAVA, COURSE_NET, COURSE_C);
 
+    public static final String YES = "Y";
+    public static final String NO = "N";
     public static final List<String> ALLOWED_YN =
-            Arrays.asList("Y", "N");
+            Arrays.asList(YES, NO);
+
+    public static final String UPDATE = "U";
+    public static final String DELETE = "D";
     public static final List<String> ALLOWED_UD =
-            Arrays.asList("U", "D");
+            Arrays.asList(UPDATE, DELETE);
 }

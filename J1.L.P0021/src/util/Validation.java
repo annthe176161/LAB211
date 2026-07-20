@@ -1,8 +1,11 @@
-package utility;
+package util;
 
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Utility for reading and validating user input from the console.
+ */
 public class Validation {
 
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -11,21 +14,23 @@ public class Validation {
     }
 
     /**
-     * Reads and validates an integer within a given range.
+     * Reads an integer within a given range.
      *
-     * @param msg the prompt message
-     * @param min the minimum acceptable value
-     * @param max the maximum acceptable value
-     * @param errNum the error message if the input is not a valid number
-     * @param errRange the error message if the input is out of range
+     * @param msg      the prompt message
+     * @param min      minimum acceptable value
+     * @param max      maximum acceptable value
+     * @param errNum   shown when input is not a number
+     * @param errRange shown when input is out of range
      * @return a valid integer between min and max
      */
     public static int readInteger(
-            String msg, int min, int max, String errNum, String errRange) {
+            String msg, int min, int max,
+            String errNum, String errRange) {
         while (true) {
             try {
                 System.out.print(msg);
-                int result = Integer.parseInt(SCANNER.nextLine().trim());
+                int result = Integer.parseInt(
+                        SCANNER.nextLine().trim());
                 if (result >= min && result <= max) {
                     return result;
                 }
@@ -37,10 +42,10 @@ public class Validation {
     }
 
     /**
-     * Reads a non-empty string from the user.
+     * Reads a non-empty string.
      *
-     * @param msg the prompt message
-     * @param errMsg the error message if the string is empty
+     * @param msg    the prompt message
+     * @param errMsg shown when input is empty
      * @return a non-empty trimmed string
      */
     public static String readString(String msg, String errMsg) {
@@ -56,10 +61,10 @@ public class Validation {
     }
 
     /**
-     * Reads an optional line from the user, may be empty.
+     * Reads a line that may be empty (optional input).
      *
      * @param msg the prompt message
-     * @return the trimmed input, possibly empty
+     * @return trimmed input, may be empty
      */
     public static String readOptionalLine(String msg) {
         System.out.print(msg);
@@ -67,12 +72,12 @@ public class Validation {
     }
 
     /**
-     * Reads and validates input against a list of allowed options.
+     * Reads input and validates against a list of allowed options.
      *
-     * @param msg the prompt message
-     * @param errMsg the error message if the input is not allowed
-     * @param options the list of acceptable strings
-     * @return the matched allowed string
+     * @param msg     the prompt message
+     * @param errMsg  shown when input does not match any option
+     * @param options list of acceptable values
+     * @return the matched option
      */
     public static String readOption(
             String msg, String errMsg, List<String> options) {
