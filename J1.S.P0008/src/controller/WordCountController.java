@@ -1,11 +1,8 @@
 package controller;
 
-import static constant.AppConstants.EMPTY_INPUT_ERROR;
-import static constant.AppConstants.INPUT_PROMPT;
-
 import java.util.Map;
 import service.WordCountService;
-import view.InputView;
+import view.AppView;
 
 /**
  * Controls the main flow of the application.
@@ -13,7 +10,7 @@ import view.InputView;
 public class WordCountController {
 
     private final WordCountService countService;
-    private final InputView inputView;
+    private final AppView appView;
 
     /**
      * Creates the controller with service and view.
@@ -21,17 +18,15 @@ public class WordCountController {
     public WordCountController() {
         this.countService =
                 new WordCountService();
-        this.inputView = new InputView();
+        this.appView = new AppView();
     }
 
     /**
      * Runs the app: input -> process -> display.
      */
     public void run() {
-        String content = inputView
-                .getNonEmptyString(
-                        INPUT_PROMPT,
-                        EMPTY_INPUT_ERROR);
+        String content =
+                appView.getNonEmptyString();
 
         Map<String, Integer> wordResult =
                 countService.countWords(content);
@@ -39,20 +34,7 @@ public class WordCountController {
                 countService.countCharacters(
                         content);
 
-        displayResult(wordResult, charResult);
-    }
-
-    /**
-     * Prints the word and character counts to
-     * the console.
-     *
-     * @param wordResult map of word counts
-     * @param charResult map of character counts
-     */
-    private void displayResult(
-            Map<String, Integer> wordResult,
-            Map<Character, Integer> charResult) {
-        System.out.println(wordResult);
-        System.out.println(charResult);
+        appView.displayResult(
+                wordResult, charResult);
     }
 }
