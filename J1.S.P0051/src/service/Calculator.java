@@ -60,7 +60,7 @@ public class Calculator {
      *
      * @param weight   weight in kg
      * @param heightCm height in cm
-     * @return BMIStatus enum
+     * @return BMI health status
      */
     public BMIStatus calculateBMI(double weight,
                                   double heightCm) {

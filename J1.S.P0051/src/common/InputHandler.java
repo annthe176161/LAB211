@@ -31,11 +31,10 @@ public class InputHandler {
                 System.out.print(msg);
                 int result = Integer.parseInt(
                         SCANNER.nextLine().trim());
-                if (result < min || result > max) {
-                    System.err.println(errRange);
-                    continue;
+                if (result >= min && result <= max) {
+                    return result;
                 }
-                return result;
+                System.err.println(errRange);
             } catch (NumberFormatException e) {
                 System.err.println(errFormat);
             }
