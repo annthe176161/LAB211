@@ -11,4 +11,6 @@ public class MessageConstant {
             "Salary is greater than zero";
     public static final String ERROR_EMPTY_SALARY =
             "You must input Salary.";
+    public static final String ERROR_SORT =
+            "Can't Sort Person";
 }

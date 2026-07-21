@@ -1,8 +1,9 @@
 package view;
 
-import constant.MessageConstant;
 import entity.Person;
+import exception.PersonException;
 import java.util.Scanner;
+import service.PersonService;
 
 /**
  * Handles user input and display
@@ -10,53 +11,46 @@ import java.util.Scanner;
  */
 public class PersonView {
 
-    private static final String BANNER =
-            "=====Management Person programer=====";
+    private final PersonService service;
 
-    /**
-     * Shows the program banner.
-     */
-    public void displayBanner() {
-        System.out.println(BANNER);
+    public PersonView(PersonService service) {
+        this.service = service;
     }
 
     /**
-     * Validates salary input and creates a Person.
+     * Prompts user to input one person's info.
+     * Re-asks salary until valid input is given.
      *
-     * @param name    the person's name
-     * @param address the person's address
-     * @param sSalary the salary string to validate
+     * @param scanner the Scanner for user input
      * @return a valid Person object
-     * @throws Exception if salary input is invalid
      */
     public Person inputPersonInfo(
-            String name,
-            String address,
-            String sSalary) throws Exception {
-        if (sSalary == null
-                || sSalary.trim().isEmpty()) {
-            throw new Exception(
-                    MessageConstant.ERROR_EMPTY_SALARY);
+            Scanner scanner) {
+        System.out.print("Please input name: ");
+        String name =
+                scanner.nextLine().trim();
+
+        System.out.print("Please input address: ");
+        String address =
+                scanner.nextLine().trim();
+
+        while (true) {
+            System.out.print(
+                    "Please input salary: ");
+            String sSalary =
+                    scanner.nextLine().trim();
+            try {
+                return service.createPerson(
+                        name, address, sSalary);
+            } catch (PersonException e) {
+                System.out.println(
+                        e.getMessage());
+            }
         }
-        double salary;
-        try {
-            salary = Double.parseDouble(
-                    sSalary.trim());
-        } catch (NumberFormatException e) {
-            throw new Exception(
-                    MessageConstant.ERROR_DIGIT);
-        }
-        if (salary <= 0) {
-            throw new Exception(
-                    MessageConstant
-                            .ERROR_GREATER_THAN_ZERO);
-        }
-        return new Person(name, address, salary);
     }
 
     /**
      * Prompts user to input all persons.
-     * Re-asks salary until valid input is given.
      *
      * @param scanner the Scanner for user input
      * @param count   number of persons to input
@@ -69,33 +63,9 @@ public class PersonView {
         while (index < count) {
             System.out.println(
                     "Input Information of Person");
-
-            System.out.print("Please input name: ");
-            String name =
-                    scanner.nextLine().trim();
-
-            System.out.print(
-                    "Please input address: ");
-            String address =
-                    scanner.nextLine().trim();
-
-            boolean done = false;
-            while (!done) {
-                System.out.print(
-                        "Please input salary: ");
-                String sSalary =
-                        scanner.nextLine().trim();
-                try {
-                    Person p = inputPersonInfo(
-                            name, address, sSalary);
-                    persons[index] = p;
-                    index++;
-                    done = true;
-                } catch (Exception e) {
-                    System.out.println(
-                            e.getMessage());
-                }
-            }
+            persons[index] =
+                    inputPersonInfo(scanner);
+            index++;
             System.out.println();
         }
         return persons;

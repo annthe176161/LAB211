@@ -1,6 +1,7 @@
 package main;
 
 import entity.Person;
+import exception.PersonException;
 import java.util.Scanner;
 import service.PersonService;
 import view.PersonView;
@@ -19,10 +20,11 @@ public class Main {
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        PersonView view = new PersonView();
         PersonService service = new PersonService();
+        PersonView view = new PersonView(service);
 
-        view.displayBanner();
+        System.out.println(
+                "=====Management Person programer=====");
 
         Person[] persons = view.inputAllPersons(
                 scanner, MAX_PERSONS);
@@ -31,11 +33,12 @@ public class Main {
             Person[] sorted =
                     service.sortBySalary(persons);
             view.displayAllPersons(sorted);
-        } catch (Exception e) {
+        } catch (PersonException e) {
             System.out.println(e.getMessage());
         }
 
-        view.displayBanner();
+        System.out.println(
+                "=====Management Person programer=====");
         scanner.close();
     }
 }
