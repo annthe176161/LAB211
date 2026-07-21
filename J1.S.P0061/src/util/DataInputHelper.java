@@ -2,6 +2,8 @@ package util;
 
 import java.util.Scanner;
 
+import constant.ShapeConstants;
+
 /**
  * Provides methods for reading and validating user input.
  */
@@ -16,20 +18,21 @@ public class DataInputHelper {
     }
 
     /**
-     * Reads a positive decimal number from the user.
+     * Reads a decimal number from the user that is greater than the minimum.
      *
      * @param prompt message displayed before input
      * @param errFormat message displayed for invalid numeric input
-     * @param errNegative message displayed for a non-positive number
-     * @return a valid positive decimal number
+     * @param errNegative message displayed for a number below minimum
+     * @param min the minimum allowed value (exclusive)
+     * @return a valid decimal number greater than min
      */
-    public static double inputPositiveDouble(
-            String prompt, String errFormat, String errNegative) {
+    public static double inputDouble(
+            String prompt, String errFormat, String errNegative, double min) {
         while (true) {
             try {
                 System.out.print(prompt);
                 double result = Double.parseDouble(SCANNER.nextLine().trim());
-                if (result > 0) {
+                if (result > min) {
                     return result;
                 }
                 System.out.println(errNegative);

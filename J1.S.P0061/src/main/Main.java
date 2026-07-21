@@ -2,6 +2,7 @@ package main;
 
 import constant.DisplayMessages;
 import constant.InputMessages;
+import constant.ShapeConstants;
 import entity.Circle;
 import entity.Rectangle;
 import entity.Triangle;
@@ -36,10 +37,11 @@ public class Main {
      * @return a valid positive decimal number
      */
     private static double inputShapeValue(String prompt) {
-        return DataInputHelper.inputPositiveDouble(
+        return DataInputHelper.inputDouble(
                 prompt,
                 InputMessages.ERROR_NOT_A_NUMBER,
-                InputMessages.ERROR_NON_POSITIVE);
+                InputMessages.ERROR_NON_POSITIVE,
+                ShapeConstants.MIN_POSITIVE_VALUE);
     }
 
     /**
