@@ -1,8 +1,5 @@
 package ui;
 
-import common.Number;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,7 +9,6 @@ import java.util.Scanner;
 public class ConsoleView {
 
     private Scanner scanner = new Scanner(System.in);
-    private Number number = new Number();
 
     /**
      * Prompts user for an input string and returns it.
@@ -27,24 +23,10 @@ public class ConsoleView {
     }
 
     /**
-     * Continuously prompts user until a valid float
-     * value is entered.
-     *
-     * @param prompt message to display
-     * @return a valid float value
+     * Displays invalid number error message.
      */
-    public float inputFloat(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String inputStr = scanner.nextLine();
-            Float validNumber = number.checkIn(inputStr);
-
-            if (validNumber != null) {
-                return validNumber;
-            } else {
-                System.out.println("Please input number");
-            }
-        }
+    public void displayInvalidNumber() {
+        System.out.println("Please input number");
     }
 
     /**
@@ -61,9 +43,34 @@ public class ConsoleView {
     }
 
     /**
-     * Displays the calculated solutions of the equations.
+     * Displays the superlative equation header.
+     */
+    public void displaySuperlativeHeader() {
+        System.out.println(
+                "----- Calculate Equation -----");
+    }
+
+    /**
+     * Displays the quadratic equation header.
+     */
+    public void displayQuadraticHeader() {
+        System.out.println(
+                "----- Calculate Quadratic Equation -----");
+    }
+
+    /**
+     * Displays an invalid option error message.
+     */
+    public void displayInvalidOption() {
+        System.out.println(
+                "Invalid option."
+                + " Please choose 1, 2, or 3.");
+    }
+
+    /**
+     * Displays the calculated solutions.
      *
-     * @param solutions list containing the equation answers
+     * @param solutions list of equation answers
      */
     public void displaySolutions(List<Float> solutions) {
         if (solutions == null) {
@@ -85,30 +92,16 @@ public class ConsoleView {
     }
 
     /**
-     * Groups and displays specific properties
-     * (odd, even, perfect square) from the collected list.
+     * Displays odd, even and perfect square numbers.
      *
-     * @param numbers combined list of inputs and roots
+     * @param oddList list of odd numbers
+     * @param evenList list of even numbers
+     * @param squareList list of perfect square numbers
      */
-    public void displayProperties(List<Float> numbers) {
-        List<Float> oddList = new ArrayList<Float>();
-        List<Float> evenList = new ArrayList<Float>();
-        List<Float> squareList = new ArrayList<Float>();
-
-        for (int i = 0; i < numbers.size(); i++) {
-            float currentNumber = numbers.get(i);
-
-            if (number.isOdd(currentNumber)) {
-                oddList.add(currentNumber);
-            }
-            if (number.isEven(currentNumber)) {
-                evenList.add(currentNumber);
-            }
-            if (number.isPerfectSquare(currentNumber)) {
-                squareList.add(currentNumber);
-            }
-        }
-
+    public void displayProperties(
+            List<Float> oddList,
+            List<Float> evenList,
+            List<Float> squareList) {
         System.out.print("Number is Odd: ");
         printFormattedList(oddList);
 

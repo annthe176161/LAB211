@@ -4,7 +4,6 @@ import constant.MenuConstant;
 import service.EquationSolver;
 import ui.ConsoleView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,11 +34,44 @@ public class EquationController {
                     MenuConstant.OPTION_EXIT)) {
                 break;
             } else {
-                System.out.println(
-                        "Invalid option."
-                        + " Please choose 1, 2, or 3.");
+                view.displayInvalidOption();
             }
         }
+    }
+
+    /**
+     * Gets a valid float input from user.
+     *
+     * @param prompt message to display
+     * @return a valid float value
+     */
+    private float inputFloat(String prompt) {
+        while (true) {
+            String input = view.getUserInput(prompt);
+            Float validNumber = solver.validateFloat(input);
+
+            if (validNumber != null) {
+                return validNumber;
+            } else {
+                view.displayInvalidNumber();
+            }
+        }
+    }
+
+    /**
+     * Displays properties of the number list.
+     *
+     * @param allNumbers list of numbers to classify
+     */
+    private void showProperties(List<Float> allNumbers) {
+        List<Float> oddList =
+                solver.getOddNumbers(allNumbers);
+        List<Float> evenList =
+                solver.getEvenNumbers(allNumbers);
+        List<Float> squareList =
+                solver.getPerfectSquares(allNumbers);
+        view.displayProperties(
+                oddList, evenList, squareList);
     }
 
     /**
@@ -47,36 +79,28 @@ public class EquationController {
      * (superlative) equation.
      */
     private void handleSuperlative() {
-        System.out.println(
-                "----- Calculate Equation -----");
-        float a = view.inputFloat("Enter A: ");
-        float b = view.inputFloat("Enter B: ");
+        view.displaySuperlativeHeader();
+        float a = inputFloat("Enter A: ");
+        float b = inputFloat("Enter B: ");
 
         List<Float> solutions =
                 solver.calculateEquation(a, b);
         view.displaySolutions(solutions);
 
         List<Float> allNumbers =
-                new ArrayList<Float>();
-        allNumbers.add(a);
-        allNumbers.add(b);
-        if (solutions != null
-                && !solutions.isEmpty()) {
-            allNumbers.addAll(solutions);
-        }
-
-        view.displayProperties(allNumbers);
+                solver.collectAllNumbers(
+                        a, b, solutions);
+        showProperties(allNumbers);
     }
 
     /**
      * Pipelines the execution for quadratic equation.
      */
     private void handleQuadratic() {
-        System.out.println(
-                "----- Calculate Quadratic Equation -----");
-        float a = view.inputFloat("Enter A: ");
-        float b = view.inputFloat("Enter B: ");
-        float c = view.inputFloat("Enter C: ");
+        view.displayQuadraticHeader();
+        float a = inputFloat("Enter A: ");
+        float b = inputFloat("Enter B: ");
+        float c = inputFloat("Enter C: ");
 
         List<Float> solutions =
                 solver.calculateQuadraticEquation(
@@ -84,15 +108,8 @@ public class EquationController {
         view.displaySolutions(solutions);
 
         List<Float> allNumbers =
-                new ArrayList<Float>();
-        allNumbers.add(a);
-        allNumbers.add(b);
-        allNumbers.add(c);
-        if (solutions != null
-                && !solutions.isEmpty()) {
-            allNumbers.addAll(solutions);
-        }
-
-        view.displayProperties(allNumbers);
+                solver.collectAllNumbers(
+                        a, b, c, solutions);
+        showProperties(allNumbers);
     }
 }

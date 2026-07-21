@@ -3,7 +3,7 @@ package common;
 /**
  * Utility class for number validation and property checks.
  */
-public class Number {
+public class NumberValidator {
 
     /**
      * Validates and parses a string into a Float object.
