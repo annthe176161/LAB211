@@ -15,13 +15,13 @@ public class Main {
      * @param args command-line arguments (not used)
      */
     public static void main(String[] args) {
-        final MatrixUI ui = new MatrixUI();
+        MatrixUI ui = new MatrixUI();
         boolean isRunning = true;
 
         while (isRunning) {
             ui.displayMenu();
 
-            final int choice =
+            int choice =
                     InputValidator.checkInputIntLimit(
                             1, 4,
                             "Your choice: ",

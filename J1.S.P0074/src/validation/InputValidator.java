@@ -14,25 +14,27 @@ public class InputValidator {
     }
 
     /**
-     * Input an integer greater than 0.
+     * Input an integer greater than min value.
      *
+     * @param min minimum allowed value
      * @param prompt message to display
      * @param formatError error for non-number input
-     * @param valueError error for value <= 0
-     * @return valid integer > 0
+     * @param valueError error for value <= min
+     * @return valid integer > min
      */
     public static int checkInputInt(
+            int min,
             String prompt,
             String formatError,
             String valueError) {
         while (true) {
             try {
                 System.out.print(prompt);
-                final int result =
+                int result =
                         Integer.parseInt(
                                 scanner.nextLine()
                                         .trim());
-                if (result > 0) {
+                if (result >= min) {
                     return result;
                 } else {
                     System.out.println(valueError);
@@ -83,7 +85,7 @@ public class InputValidator {
         while (true) {
             try {
                 System.out.print(prompt);
-                final int result =
+                int result =
                         Integer.parseInt(
                                 scanner.nextLine()
                                         .trim());

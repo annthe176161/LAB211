@@ -19,6 +19,8 @@ public final class MessageConstant {
             "Error: Rows of Matrix 2 must equal Columns"
             + " of Matrix 1!";
 
+    public static final int MIN_SIZE = 1;
+
     private MessageConstant() {
     }
 }
